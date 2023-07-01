@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>병원 진료 예약</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <a href="/">개인 블로그</a>
+    <h1>병원 진료 예약</h1>
+
+    <div id="reservation-form">
+        <h2>예약하기</h2>
+        <form method="POST" action="reservation.php">
+            <label for="name">이름:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="date">날짜:</label>
+            <input type="date" id="date" name="date" required>
+
+            <label for="time">시간:</label>
+            <input type="time" id="time" name="time" required>
+
+            <input type="submit" value="예약하기">
+        </form>
+    </div>
+
+    <div id="reservation-list">
+        <h2>예약 확인</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>이름</th>
+                    <th>날짜</th>
+                    <th>시간</th>
+                </tr>
+            </thead>
+            <tbody id="reservation-data">
+                <!-- 예약 정보가 동적으로 추가될 공간 -->
+            </tbody>
+        </table>
+    </div>
+    <script>
+// 서버로부터 예약 정보를 가져와서 동적으로 테이블에 추가하는 함수
+function loadReservations() {
+    // Ajax를 사용하여 서버로부터 예약 정보를 가져옵니다.
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "get_reservations.php", true);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            // 서버 응답을 받으면 예약 정보를 파싱합니다.
+            var reservations = JSON.parse(xhr.responseText);
+            
+            // 테이블의 tbody 요소를 선택합니다.
+            var reservationData = document.getElementById("reservation-data");
+            
+            // 예약 정보를 동적으로 추가합니다.
+            reservationData.innerHTML = "";
+            for (var i = 0; i < reservations.length; i++) {
+                var reservation = reservations[i];
+                var row = reservationData.insertRow();
+                var nameCell = row.insertCell();
+                var dateCell = row.insertCell();
+                var timeCell = row.insertCell();
+                
+                nameCell.textContent = reservation.name;
+                dateCell.textContent = reservation.date;
+                timeCell.textContent = reservation.time;
+            }
+        }
+    };
+    xhr.send();
+}
+
+// 페이지 로드 시 예약 정보를 가져옵니다.
+loadReservations();
+</script>
+</body>
+</html>

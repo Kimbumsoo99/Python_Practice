@@ -1,0 +1,80 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  background-color: #f7f7f7;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+#reservation-form,
+#reservation-list {
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+#reservation-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#reservation-list table th,
+#reservation-list table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+#reservation-list table th {
+  background-color: #f2f2f2;
+  color: #666;
+}
+
+#reservation-data tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+#reservation-data tr:hover {
+  background-color: #f5f5f5;
+}
+
+#reservation-form input[type="text"],
+#reservation-form input[type="date"],
+#reservation-form input[type="time"],
+#reservation-form input[type="submit"] {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+#reservation-form input[type="submit"] {
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+#reservation-form input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+#reservation-list h2 {
+  color: #333;
+  margin-top: 0;
+}
+
+#reservation-list p {
+  margin: 0;
+  color: #666;
+}

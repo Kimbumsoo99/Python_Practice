@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>개인 블로그</title>
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f2f2f2;
+            }
+            .container {
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 20px;
+                background-color: #fff;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                margin-top: 50px;
+            }
+            .board-list {
+                list-style: none;
+                padding: 10px;
+                border-bottom: 1px solid #ccc;
+                margin-bottom: 10px;
+            }
+            .board-item {
+                margin-bottom: 10px;
+                background-color: #f2f2f2;
+                padding: 10px;
+                border-radius: 4px;
+            }
+            .board-item h2 {
+                font-size: 20px;
+                font-weight: bold;
+		color: #333;
+		text-decoration: none;
+            }
+            .board-item p {
+                margin-top: 10px;
+            }
+            .board-footer {
+                font-size: 12px;
+                color: #888;
+                text-align: right;
+            }
+            .create-board-btn {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background-color: #4caf50;
+                color: #ffffff;
+                padding: 10px 20px;
+                font-size: 16px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+	    .main-link{
+		text-decoration: none;
+	    }
+        </style>
+    </head>
+    <body>
+	<a href="hospital/index.html">병원 예약 페이지 &rarr;</a>
+        <div class="container">
+            <h1>게시판 목록</h1>
+            <ul class="board-list" id="board-list">
+                <!-- 게시판 목록을 동적으로 생성하기 위해 비어있는 ul 요소 -->
+            </ul>
+        </div>
+
+        <button class="create-board-btn" onclick="goToCreateBoard()">
+            게시판 생성
+        </button>
+
+        <script>
+            // 서버에서 게시판 목록을 가져와서 동적으로 생성하는 함수
+            function showBoardList(boards) {
+                // 가져온 게시판 목록을 동적으로 생성
+                console.log(boards);
+                var boardListElement = document.getElementById("board-list");
+                boardListElement.innerHTML = "";
+                boards.forEach(function (board) {
+                    var boardItemElement = document.createElement("li");
+                    boardItemElement.classList.add("board-item");
+
+                    var boardTitleElement = document.createElement("h2");
+                    var boardTitleLinkElement = document.createElement("a");
+                    boardTitleLinkElement.innerText = board.title;
+                    boardTitleLinkElement.href = "board.php?id=" + board.id;
+		    boardTitleLinkElement.className = "main-link";
+                    boardTitleElement.appendChild(boardTitleLinkElement);
+
+                    var boardContentElement = document.createElement("p");
+                    boardContentElement.innerText = board.content;
+
+                    var boardCreatedElement = document.createElement("p");
+                    boardCreatedElement.innerText = board.created_at;
+                    boardCreatedElement.className = "board-footer";
+
+                    boardItemElement.appendChild(boardTitleElement)
+                    boardItemElement.appendChild(boardCreatedElement);
+
+                    boardListElement.appendChild(boardItemElement);
+                });
+            }
+
+            function fetchBoardList() {
+                var xhr = new XMLHttpRequest();
+                xhr.open("GET", "get_boards.php", true);
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        var boards = JSON.parse(xhr.responseText);
+                        showBoardList(boards);
+                    }
+                };
+                xhr.send();
+                // 서버에서 게시판 목록을 가져오는 로직 작성
+                // 서버 API 호출 및 응답 처리
+                // 예시:
+            }
+
+            // 페이지 로드 시 게시판 목록을 가져와서 생성
+            window.onload = function () {
+                fetchBoardList();
+            };
+
+            // 게시판 생성 페이지로 이동하는 함수
+            function goToCreateBoard() {
+                window.location.href = "create_board.php";
+            }
+        </script>
+    </body>
+</html>
