@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -82,8 +81,8 @@
   <?php
   // Maria DB 연결 설정
   $servername = "localhost";
-  $username = "test";
-  $password = "1234";
+  $username = "kkkk";
+  $password = "1111";
   $dbname = "test";
 
   // 게시판 ID를 URL 매개변수에서 가져옴

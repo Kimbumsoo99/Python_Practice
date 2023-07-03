@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost"; // 데이터베이스 서버 주소
-$username = "test"; // 데이터베이스 사용자 이름
-$password = "1234"; // 데이터베이스 사용자 비밀번호
+$username = "kkkk"; // 데이터베이스 사용자 이름
+$password = "1111"; // 데이터베이스 사용자 비밀번호
 $dbname = "test"; // 데이터베이스 이름
 
 // 데이터베이스 연결을 생성합니다.

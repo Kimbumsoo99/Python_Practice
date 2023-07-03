@@ -1,8 +1,8 @@
 <?php
 // Maria DB 연결 설정
 $servername = "localhost";
-$username = "test";
-$password = "1234";
+$username = "kkkk";
+$password = "1111";
 $dbname = "test";
 
 // 댓글이 제출되었을 때의 처리

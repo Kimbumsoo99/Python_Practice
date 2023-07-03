@@ -1,8 +1,8 @@
 <?php
 // MariaDB 연결 설정
 $servername = 'localhost'; // 호스트 이름
-$username = 'test'; // 사용자 이름
-$password = '1234'; // 비밀번호
+$username = 'kkkk'; // 사용자 이름
+$password = '1111'; // 비밀번호
 $dbname = 'test'; // 데이터베이스 이름
 
 // MariaDB 연결
